@@ -7,22 +7,24 @@ pub enum Pieces {
     King,
 }
 
-impl Pieces {
+impl TryFrom<&char> for Pieces {
+    type Error = String;
     /// Attempt to construct a [`Piece`][Pieces] from a `char`
     /// 
-    /// Not color sensitive, `p` or `P` will both be pawns.
+    /// Not case sensitive, `p` or `P` will both be pawns
     /// 
-    /// # Returns
-    /// Returns `None` if the `char` is not a piece.
-    fn from_char(value: char) -> Option<Self> {
-        match value {
-            'p' => Some(Pieces::Pawn),
-            'n' => Some(Pieces::Knight),
-            'b' => Some(Pieces::Pawn),
-            'r' => Some(Pieces::Rook),
-            'q' => Some(Pieces::Queen),
-            'k' => Some(Pieces::King),
-            _ => None,
+    /// # Errors
+    /// Returns `Err` if the piece couldn't be parsed
+    #[inline]
+    fn try_from(value: &char) -> Result<Self, Self::Error> {
+        match value.to_ascii_lowercase() {
+            'p' => Ok(Pieces::Pawn),
+            'n' => Ok(Pieces::Knight),
+            'b' => Ok(Pieces::Bishop),
+            'r' => Ok(Pieces::Rook),
+            'q' => Ok(Pieces::Queen),
+            'k' => Ok(Pieces::King),
+            _ => Err(format!("Cannot parse `{value}` as a piece!")),
         }
     }
 }
