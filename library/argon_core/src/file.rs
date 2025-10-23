@@ -13,6 +13,18 @@ pub enum File {
     H,
 }
 
+/// All [`Files`][`File`]
+pub const ALL_FILES: [File; 8] = [
+    File::A,
+    File::B,
+    File::C,
+    File::D,
+    File::E,
+    File::F,
+    File::G,
+    File::H,
+];
+
 impl TryFrom<&char> for File {
     type Error = String;
 

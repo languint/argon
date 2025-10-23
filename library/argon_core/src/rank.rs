@@ -1,5 +1,17 @@
 pub struct Rank(pub u8);
 
+/// All [`Ranks`][`Rank`]
+pub const ALL_RANKS: [Rank; 8] = [
+    Rank(1),
+    Rank(2),
+    Rank(3),
+    Rank(4),
+    Rank(5),
+    Rank(6),
+    Rank(7),
+    Rank(8),
+];
+
 impl TryFrom<&char> for Rank {
     type Error = String;
 
