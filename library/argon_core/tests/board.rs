@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod board_tests {
     use argon_core::{
-        bitboard::{ BB_RANK_2, BB_RANK_7, BB_RANK_8, Bitboard},
+        bitboard::{BB_RANK_2, BB_RANK_7, BB_RANK_8, Bitboard},
         board::{Board, STARTING_FEN},
         square::Square,
     };
@@ -32,11 +32,11 @@ mod board_tests {
             Bitboard::squares_mask(vec![Square::D1, Square::D8])
         );
 
-        assert_eq!(board.bitboards[5], Bitboard::squares_mask(vec![Square::E1, Square::E8]));
-
         assert_eq!(
-            board.bitboards[6],
-            Bitboard(BB_RANK_7 | BB_RANK_8 )
+            board.bitboards[5],
+            Bitboard::squares_mask(vec![Square::E1, Square::E8])
         );
+
+        assert_eq!(board.bitboards[6], Bitboard(BB_RANK_7 | BB_RANK_8));
     }
 }

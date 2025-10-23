@@ -9,10 +9,10 @@ pub enum MoveFlags {
 }
 
 /// A chess move type
-/// 
+///
 /// Holds a source [`Square`] and a destination [`Square`]
-/// 
-/// Along with [`MoveFlags`] like en-passant or castling 
+///
+/// Along with [`MoveFlags`] like en-passant or castling
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Move(Square, Square, MoveFlags);
 
