@@ -1,3 +1,4 @@
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Rank(pub u8);
 
 /// All [`Ranks`][`Rank`]
