@@ -1,6 +1,6 @@
 use std::{
     fmt,
-    ops::{BitAnd, BitOr, BitXor, Not},
+    ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not},
 };
 
 /// A bitboard type, a wrapper around `u64`
@@ -131,6 +131,24 @@ impl BitXor for Bitboard {
     #[inline]
     fn bitxor(self, rhs: Bitboard) -> Self::Output {
         Self(self.0 ^ rhs.0)
+    }
+}
+
+impl BitAndAssign for Bitboard {
+    fn bitand_assign(&mut self, rhs: Self) {
+        self.0 &= rhs.0;
+    }
+}
+
+impl BitOrAssign for Bitboard {
+    fn bitor_assign(&mut self, rhs: Self) {
+        self.0 |= rhs.0;
+    }
+}
+
+impl BitXorAssign for Bitboard {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        self.0 ^= rhs.0;
     }
 }
 
