@@ -105,7 +105,7 @@ impl Bitboard {
     pub fn squares_mask(sqs: Vec<Square>) -> Self {
         let mut result = Bitboard::empty();
         for sq in sqs {
-            result |= Bitboard(1u64 << u8::from(sq))
+            result |= Bitboard(1u64 << u8::from(sq));
         }
 
         result

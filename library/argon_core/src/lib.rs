@@ -1,3 +1,6 @@
+pub mod castling;
+pub mod chess_move;
+pub mod game;
 pub mod bitboard;
 pub mod board;
 pub mod color;

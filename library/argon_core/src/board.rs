@@ -8,6 +8,8 @@ pub struct Board {
 pub const STARTING_FEN: &str = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 impl Board {
+    #[must_use]
+    #[inline]
     pub fn get_piece_bitboard(piece: Pieces) -> usize {
         piece as usize
     }
@@ -35,7 +37,7 @@ impl TryFrom<&str> for Board {
             let mut file_idx = 0;
 
             for c in rank_str.chars() {
-                if c.is_digit(10) {
+                if c.is_ascii_digit() {
                     file_idx += unsafe { c.to_digit(10).unwrap_unchecked() as usize };
                     continue;
                 }
