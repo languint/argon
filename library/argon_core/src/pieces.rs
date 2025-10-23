@@ -1,3 +1,5 @@
+/// The chess pieces
+#[repr(u8)]
 pub enum Pieces {
     Pawn,
     Knight,

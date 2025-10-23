@@ -3,6 +3,8 @@ use std::{
     ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not},
 };
 
+use crate::square::Square;
+
 /// A bitboard type, a wrapper around `u64`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub struct Bitboard(pub u64);
@@ -90,11 +92,23 @@ impl Bitboard {
 }
 
 impl Bitboard {
+    /// Get a [`Bitboard`] mask with a square
     #[must_use]
     #[inline]
-    /// Get a [`Bitboard`] mask with a square
     pub const fn square_mask(sq: u8) -> Self {
         Self(1u64 << sq)
+    }
+
+    /// Construct a [`Bitboard`] mask from a vec of squares
+    #[must_use]
+    #[inline]
+    pub fn squares_mask(sqs: Vec<Square>) -> Self {
+        let mut result = Bitboard::empty();
+        for sq in sqs {
+            result |= Bitboard(1u64 << u8::from(sq))
+        }
+
+        result
     }
 }
 

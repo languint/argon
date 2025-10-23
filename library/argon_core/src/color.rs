@@ -20,3 +20,18 @@ impl Not for Color {
         }
     }
 }
+
+impl From<&char> for Color {
+    /// Get a color from a FEN char
+    ///
+    /// `N` -> [`Color::White`]
+    /// 'n' -> [`Color::Black`]
+    #[inline]
+    fn from(value: &char) -> Self {
+        if value.is_ascii_uppercase() {
+            Color::White
+        } else {
+            Color::Black
+        }
+    }
+}
