@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod rank_tests {
-    use std::ops::RangeInclusive;
     use argon_core::rank::{ALL_RANKS, Rank};
+    use std::ops::RangeInclusive;
 
     #[test]
     fn from_char() {
@@ -18,8 +18,7 @@ mod rank_tests {
         let numbers: Vec<char> = ('1'..='8').collect();
 
         for (index, rank) in ALL_RANKS.iter().enumerate() {
-            let number_rank = Rank::try_from(&numbers[index])
-                .expect("Expected cast to succeed");
+            let number_rank = Rank::try_from(&numbers[index]).expect("Expected cast to succeed");
             assert_eq!(&number_rank, rank, "Mismatch at index {index}");
         }
     }

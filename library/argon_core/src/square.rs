@@ -20,6 +20,17 @@ pub enum Square {
     A8 = 56, B8 = 57, C8 = 58, D8 = 59, E8 = 60, F8 = 61, G8 = 62, H8 = 63,
 }
 
+/// All [`Squares`][`Square`]
+pub const ALL_SQUARES: [Square; 64] = {
+    let mut arr = [Square::A1; 64];
+    let mut i: u8 = 0;
+    while i < 64 {
+        arr[i as usize] = unsafe { std::mem::transmute::<u8, Square>(i) };
+        i += 1;
+    }
+    arr
+};
+
 impl TryFrom<u8> for Square {
     type Error = String;
     /// Attempt to create a [`Square`] from a `u8`
