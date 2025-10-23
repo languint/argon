@@ -1,5 +1,7 @@
 use std::fmt;
 
+use crate::{file::File, rank::Rank};
+
 /// A chess square using little endian mappings.
 /// 
 /// `0` -> `A1`
@@ -21,7 +23,7 @@ pub enum Square {
 impl TryFrom<u8> for Square {
     type Error = String;
     /// Attempt to create a [`Square`] from a `u8`
-    /// 
+    ///
     /// # Errors
     /// Returns `Err` if the value is too big to be a square
     fn try_from(value: u8) -> Result<Self, Self::Error> {
@@ -40,23 +42,25 @@ impl From<Square> for u8 {
 }
 
 impl Square {
-    #[inline]
     /// Get the [`File`] associated with this [`Square`]
-    pub const fn file(self) -> u8 {
-        (self as u8) & 7
+    #[inline]
+    #[must_use]
+    pub fn file(self) -> File {
+        unsafe { File::from_u8((self as u8) & 7) }
     }
 
-    #[inline]
     /// Get the [`Rank`] associated with this [`Square`]
-    pub const fn rank(self) -> u8 {
-        (self as u8) >> 3
+    #[inline]
+    #[must_use]
+    pub fn rank(self) -> Rank {
+        Rank(self as u8 >> 3)
     }
 }
 
 impl fmt::Display for Square {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let file = (b'a' + self.file()) as char;
-        let rank = (b'1' + self.rank()) as char;
-        write!(f, "{}{}", file, rank)
+        let file = (b'a' + u8::from(self.file())) as char;
+        let rank = (b'1' + self.rank().0) as char;
+        write!(f, "{file}{rank}")
     }
 }

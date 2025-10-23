@@ -10,9 +10,9 @@ pub enum Pieces {
 impl TryFrom<&char> for Pieces {
     type Error = String;
     /// Attempt to construct a [`Piece`][Pieces] from a `char`
-    /// 
+    ///
     /// Not case sensitive, `p` or `P` will both be pawns
-    /// 
+    ///
     /// # Errors
     /// Returns `Err` if the piece couldn't be parsed
     #[inline]

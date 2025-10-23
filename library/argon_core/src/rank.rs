@@ -1,4 +1,4 @@
-pub struct Rank(u8);
+pub struct Rank(pub u8);
 
 impl TryFrom<&char> for Rank {
     type Error = String;
